@@ -1,7 +1,6 @@
 import turtle
 import time
 
-# Set up the screen
 screen = turtle.Screen()
 screen.bgcolor("#16E60F")
 screen.title("Plane Collision Animation")
@@ -19,30 +18,25 @@ plane1.penup()
 plane1.speed("fastest")
 
 plane1.setposition(screen.window_width() // 2, 0)
-plane1.setheading(180)  # Point the plane to the left
+plane1.setheading(180)  
 
-# Create Plane 2
 plane2 = turtle.Turtle()
 plane2.penup()
 plane2.speed("fastest")
-# --- CORRECTED LINE ---
-# Set the Y position to 0, same as Plane 1
+
 plane2.setposition(-screen.window_width() // 2, 0)
 
-# Create a turtle for the explosion animation
 explosion = turtle.Turtle()
 explosion.hideturtle()
 explosion.speed("fastest")
 
-# Animation loop
 frame_index = 0
-# Adjust the collision detection distance slightly
+
 while plane1.xcor() > plane2.xcor() + 20:
-    # Move Plane 1
+
     plane1.shape(plane1_frames[frame_index % len(plane1_frames)])
     plane1.forward(20)
 
-    # Move Plane 2
     plane2.shape(plane2_frames[frame_index % len(plane2_frames)])
     plane2.forward(20)
 
@@ -50,19 +44,17 @@ while plane1.xcor() > plane2.xcor() + 20:
     screen.update()
     time.sleep(0.1)
 
-# Collision and explosion
 plane1.hideturtle()
 plane2.hideturtle()
-# Position the explosion at the point of impact
+
 explosion.setposition(plane2.xcor(), plane2.ycor())
 explosion.showturtle()
 
-for frame in blow_frames * 3:  # Show explosion animation
+for frame in blow_frames * 3: 
     explosion.shape(frame)
     screen.update()
     time.sleep(0.2)
 
 explosion.hideturtle()
 
-# Keep the window open
 turtle.done()
